@@ -1,16 +1,15 @@
 server <- function(input, output, session) {
+  behinddoor <- reactiveValues(door = "goat")
   
-  observeEvent(input$goat, {
-    gdoornumber3 <<- "goat"
-    output$doornumber3 <- renderText(gdoornumber3)
+  dat <- observeEvent(input$goat, {
+    behinddoor$door <- "goat"
   })
   
-  observeEvent(input$car, {
-    gdoornumber3 <<- "car"
-    output$doornumber3 <- renderText(gdoornumber3)
+  dat <- observeEvent(input$car, {
+    behinddoor$door <- "car"
   })
   
   observeEvent(input$render, {
-    output$doornumber3 <- renderText(gdoornumber3)
+    output$doornumber3 <- renderText(behinddoor$door)
   })
 }
